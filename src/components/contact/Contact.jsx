@@ -1,24 +1,25 @@
-import React from 'react'
-import './contact.css'
-import { HiOutlineMail } from 'react-icons/hi'
-import { TbBrandLinkedin } from 'react-icons/tb'
-import emailjs from 'emailjs-com'
+import React, { useRef } from 'react';
+import './contact.css';
+import { HiOutlineMail } from 'react-icons/hi';
+import { TbBrandLinkedin } from 'react-icons/tb';
 
 const Contact = () => {
     const form = useRef();
 
-    const sendEmail = (e) => {
+    const handleSendEmail = (e) => {
         e.preventDefault();
+        const formData = new FormData(form.current);
+        const name = formData.get('name');
+        const subject = formData.get('subject') || `Message from ${name}`;
+        const message = formData.get('message');
 
-        emailjs.sendForm('service_s40ojcs', 'template_eh9sppo', form.current, 'Kg2rhkR8J5TfgshRJ')
+        // Construct the mailto link
+        const mailtoLink = `mailto:mr.lalaoui.rayane@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
 
-        e.target.reset()
+        // Open the default email client (Outlook, Gmail, etc.)
+        window.location.href = mailtoLink;
 
-            .then((result) => {
-                console.log(result.text);
-            }, (error) => {
-                console.log(error.text);
-            });
+        form.current.reset();
     };
 
     return (
