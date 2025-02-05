@@ -2,7 +2,6 @@ import React from 'react'
 import './contact.css'
 import { HiOutlineMail } from 'react-icons/hi'
 import { TbBrandLinkedin } from 'react-icons/tb'
-import { useRef } from 'react';
 import emailjs from 'emailjs-com'
 
 const Contact = () => {
