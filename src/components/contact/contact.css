@@ -1,4 +1,3 @@
-import React, { useRef } from 'react';
 import './contact.css';
 import { HiOutlineMail } from 'react-icons/hi';
 import { TbBrandLinkedin } from 'react-icons/tb';
