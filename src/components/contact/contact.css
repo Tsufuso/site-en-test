@@ -1,57 +1,72 @@
-import './contact.css';
-import { HiOutlineMail } from 'react-icons/hi';
-import { TbBrandLinkedin } from 'react-icons/tb';
+.container.contact__container {
+    width: 58%;
+    display: grid;
+    grid-template-columns: 30% 50%;
+    gap: 12%;
+}
 
-const Contact = () => {
-    const form = useRef();
+.contact__options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
 
-    const handleSendEmail = (e) => {
-        e.preventDefault();
-        const formData = new FormData(form.current);
-        const name = formData.get('name');
-        const subject = formData.get('subject') || `Message from ${name}`;
-        const message = formData.get('message');
+.contact__option {
+    background: var(--color-bg-variant);
+    padding: 1.2rem;
+    border-radius: 1.2rem;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: var(transition);
+}
 
-        // Construct the mailto link
-        const mailtoLink = `mailto:mr.lalaoui.rayane@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+.contact__option:hover {
+    background: transparent;
+    border-color: var(--color-primary-variant);
+}
 
-        // Open the default email client (Outlook, Gmail, etc.)
-        window.location.href = mailtoLink;
+.contact__option-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
 
-        form.current.reset();
-    };
+.contact__option a {
+    margin-top: 0.7rem;
+    display: inline-block;
+    font-size: 1rem;
+    color: #4a3f42f2;
+}
 
-    return (
-        <section id='contact'>
-            <h5>Get In Touch</h5>
-            <h2>Contact Me</h2>
+/*================== form ============= */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
 
-            <div className="container contact__container">
-                <div className="contact__options">
-                    <article className="contact__option">
-                        <HiOutlineMail className='contact__option-icon' />
-                        <h4>Email</h4>
-                        <h5>mr.lalaoui.rayane@gmail.com</h5>
-                        <a href="mailto:mr.lalaoui.rayane@gmail.com" target="_blank" rel="noreferrer">Send a message</a>
-                    </article>
+input,
+textarea {
+    width: 100%;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background: transparent;
+    border: 2px solid var(--color-primary);
+    resize: none;
+    color: var(--color-white);
+}
 
-                    <article className="contact__option">
-                        <TbBrandLinkedin className='contact__option-icon' />
-                        <h4>LinkedIn</h4>
-                        <h5>Lalaoui Hassani Rayane</h5>
-                        <a href="https://www.linkedin.com/in/rayane-lalaoui-hassani/" target="_blank" rel="noreferrer">Send a message</a>
-                    </article>
-                </div>
+/* ================== Media Queries (Medium Devices ==============*/
+@media screen and (max-width: 1024px) {
+    .container.contact__container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
 
-                <form ref={form} onSubmit={handleSendEmail}>
-                    <input type="text" name='name' placeholder='Your Email' required />
-                    <input type="text" name='subject' placeholder='Subject (Optional)' />
-                    <textarea name='message' rows="7" placeholder='Your Message , be free to ask' required></textarea>
-                    <button type='submit' className='btn btn-primary'>Send Message</button>
-                </form>
-            </div>
-        </section>
-    );
-};
 
-export default Contact; 
+/* ================== Media Queries (Medium Devices ==============*/
+@media screen and (max-width: 600px) {
+    .container.contact__container {
+        width: var(--container-width-sm);
+    }
+}
